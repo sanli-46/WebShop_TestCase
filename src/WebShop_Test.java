@@ -5,6 +5,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class WebShop_Test extends BaseDriver {
     @Test
@@ -29,7 +33,7 @@ public class WebShop_Test extends BaseDriver {
         Func.Wait(1);
 
         WebElement eMail = driver.findElement(By.xpath("//input[@id='Email']"));
-        eMail.sendKeys("tester.selenıum4@gmail.com");
+        eMail.sendKeys("tester.selenıum10@gmail.com");
         Func.Wait(1);
 
         WebElement password = driver.findElement(By.xpath("//input[@id='Password']"));
@@ -162,5 +166,155 @@ public class WebShop_Test extends BaseDriver {
 
         WaitAndClose();
 
+    }
+    @Test
+    public void Test5()
+    {
+        driver=new ChromeDriver();
+        driver.get("https://demowebshop.tricentis.com/");
+
+
+        WebElement btnLogin=driver.findElement(By.cssSelector("[class='ico-login']"));
+        btnLogin.click();
+
+
+        WebElement email=driver.findElement(By.id("Email"));
+        email.sendKeys("tester.selenıum10@gmail.com");
+
+
+        WebElement password=driver.findElement(By.id("Password"));
+        password.sendKeys("testers12332");
+
+
+        WebElement btnLogin2=driver.findElement(By.cssSelector("[class='button-1 login-button']"));
+        btnLogin2.click();
+
+        Func.Wait(1);
+        WebElement electronics=driver.findElement(By.xpath("(//*[@href='/electronics'])[1]"));
+        WebElement cellPhones=driver.findElement(By.xpath("(//*[@href='/cell-phones'])[1]"));
+
+        Actions aksiyonDriver=new Actions(driver);
+
+        Func.Wait(1);
+        aksiyonDriver.moveToElement(electronics).build().perform();
+        Func.Wait(1);
+        aksiyonDriver.moveToElement(cellPhones).build().perform();
+        Func.Wait(1);
+        cellPhones.click();
+        Func.Wait(1);
+
+        WebElement AddToChart=driver.findElement(By.xpath("(//input[@value='Add to cart'])[1]"));
+        AddToChart.click();
+
+        Func.Wait(1);
+        WebElement sepetim=driver.findElement(By.xpath("(//*[@class='cart-label'])[1]"));
+        sepetim.click();
+
+        Func.Wait(2);
+        WebElement product=driver.findElement(By.xpath("//a[@class='product-name']"));
+        Assert.assertTrue("Smartphone yazısı sepetimde bulunamadı!", product.getText().contains("Smartphone") );
+
+        Func.Wait(1);
+        WebElement btnAgree=driver.findElement(By.id("termsofservice"));
+        btnAgree.click();
+
+        Func.Wait(1);
+        WebElement checkout=driver.findElement(By.id("checkout"));
+        checkout.click();
+
+        Func.Wait(2);
+        WebElement webMenu=driver.findElement(By.id("BillingNewAddress_CountryId"));
+        Select country=new Select(webMenu);
+        country.selectByVisibleText("United States");
+
+        Func.Wait(2);
+        WebElement webMenu2=driver.findElement(By.id("BillingNewAddress_StateProvinceId"));
+        Select state=new Select(webMenu2);
+        state.selectByVisibleText("Alabama");
+
+        Func.Wait(2);
+        WebElement city=driver.findElement(By.id("BillingNewAddress_City"));
+        city.sendKeys("Missouri");
+
+        Func.Wait(1);
+        WebElement adress1=driver.findElement(By.id("BillingNewAddress_Address1"));
+        adress1.sendKeys("Tecno");
+
+        Func.Wait(1);
+        WebElement zipcode=driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
+        zipcode.sendKeys("4444444");
+
+        Func.Wait(1);
+        WebElement phoneNumber=driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
+        phoneNumber.sendKeys("+1 99988877766");
+
+        Func.Wait(1);
+        WebElement btnContinue=driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[1]"));
+        btnContinue.click();
+
+        Func.Wait(2);
+        WebElement InStorePickup=driver.findElement(By.id("PickUpInStore"));
+        InStorePickup.click();
+
+        Func.Wait(1);
+        WebElement shippingAddress=driver.findElement(By.xpath("//label[text()='Select a shipping address from your address book or enter a new address.']"));
+        Assert.assertTrue("Kargolama adresi kaybolmadı!", shippingAddress.isEnabled());
+
+
+        Func.Wait(1);
+        WebElement btnContinue2=driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[2]"));
+        btnContinue2.click();
+
+        Func.Wait(1);
+        WebElement paymentMethod=driver.findElement(By.id("paymentmethod_0"));
+        paymentMethod.click();
+
+
+        Func.Wait(1);
+        WebElement btnContinue3=driver.findElement(By.xpath("//input[@class='button-1 payment-method-next-step-button']"));
+        btnContinue3.click();
+
+        Func.Wait(1);
+        WebElement odemeYontemi=driver.findElement(By.xpath("//p[text()='You will pay by COD']"));
+        Assert.assertTrue(" ödeme yöntemi doğrulanmadı!",odemeYontemi.getText().equals("You will pay by COD") );
+
+        Func.Wait(1);
+        WebElement btnContinue4=driver.findElement(By.xpath("//input[@class='button-1 payment-info-next-step-button']"));
+        btnContinue4.click();
+
+        Func.Wait(1);
+        List<WebElement> ucretler=driver.findElements(By.xpath("//span[@class='product-subtotal']"));
+        Func.Wait(1);
+        double toplam=0;
+        for (WebElement e:ucretler){
+            System.out.println(e.getText());
+            toplam=toplam+Double.parseDouble(e.getText().replaceAll("[^0-9,.]",""));
+        }
+        System.out.println("toplam = " + toplam);
+
+        Func.Wait(1);
+        WebElement subtotalElement=driver.findElement(By.xpath("//span[@class='product-price']"));
+        Double subtotal= Double.parseDouble( subtotalElement.getText().replaceAll("[^0-9,.]","")   );
+
+        Func.Wait(1);
+        WebElement additionalFee=driver.findElement(By.xpath("(//span[@class='product-price'])[3]"));
+        Double fee= Double.parseDouble( additionalFee.getText().replaceAll("[^0-9,.]","")   );
+        System.out.println("Payment method additional fee = " + fee);
+
+        double total=subtotal+fee;
+        System.out.println("total = " + total);
+        Func.Wait(1);
+        Assert.assertTrue("Değerler eşit değil", toplam+fee== total);
+
+        Func.Wait(2);
+        WebElement btnConfirm=driver.findElement(By.xpath("//*[@class='button-1 confirm-order-next-step-button']"));
+        btnConfirm.click();
+
+        Func.Wait(2);
+        WebElement orderComplated=driver.findElement(By.xpath("//*[@class='title']"));
+        Assert.assertTrue(" Sipariş tamamlanamadı !",orderComplated.getText().equals("Your order has been successfully processed!") );
+
+
+        WaitAndClose();
     }
 }
