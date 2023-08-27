@@ -92,7 +92,7 @@ public class WebShop_Test extends BaseDriver {
             System.out.println("Aynı mail adresi ile giriş yaptınız, lütfen tekrar deneyiniz.");
 
         } catch (Exception e) {
-            Assert.fail("Error message 'The specified email already exists' not found on the page.");
+            Assert.fail("Error.. message 'The specified email already exists' not found on the page.");
         }
         WaitAndClose();
 
