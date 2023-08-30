@@ -317,4 +317,151 @@ public class WebShop_Test extends BaseDriver {
 
         WaitAndClose();
     }
+    @Test
+    public void test6() {
+        driver.get("https://demowebshop.tricentis.com/");
+
+        WebElement community = driver.findElement(By.xpath("//input[@id='pollanswers-1']"));
+        community.click();
+
+        WebElement button = driver.findElement(By.xpath("//input[@id='vote-poll-1']"));
+        button.click();
+
+        WebElement msj = driver.findElement(By.xpath("//div[@id='block-poll-vote-error-1']"));
+
+        Assert.assertTrue("mesaj bulundu", msj.isDisplayed());
+
+
+        List<WebElement> sonuçlar = driver.findElements(By.xpath("//li[@class='answer']"));
+
+        System.out.println("sonuçlar. = " + sonuçlar.get(0));
+
+        WebElement giriş = driver.findElement(By.xpath("//a[@class='ico-login']"));
+        giriş.click();
+
+        WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
+        email.sendKeys("Fatih453377@gmail.com");
+
+        WebElement sifre = driver.findElement(By.xpath("//input[@id='Password']"));
+        sifre.sendKeys("Fatih188");
+
+
+        WebElement but = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        but.click();
+
+
+        BekleVeKapat();
+    }
+
+    @Test
+    public void test7() {
+        WebDriver driver = new ChromeDriver();
+
+        driver.get("https://demowebshop.tricentis.com/");
+
+
+        WebElement giriş = driver.findElement(By.xpath("//a[@class='ico-login']"));
+        giriş.click();
+
+        WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
+        email.sendKeys("Fatih453377@gmail.com");
+
+        WebElement sifre = driver.findElement(By.xpath("//input[@id='Password']"));
+        sifre.sendKeys("Fatih188");
+
+
+        WebElement but = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        but.click();
+
+
+        WebElement computers = driver.findElement(By.linkText("Computers"));
+        computers.click();
+        MyFunc.Wait(2);
+
+        WebElement masaüstü = driver.findElement(By.xpath("//a[@title='Show products in category Desktops']"));
+        masaüstü.click();
+        MyFunc.Wait(2);
+
+        WebElement addtoCart = driver.findElement(By.xpath("//input[@value='Add to cart']"));
+        addtoCart.click();
+        MyFunc.Wait(2);
+
+        WebElement sepet = driver.findElement(By.xpath("//input[@id='add-to-cart-button-72']"));
+        sepet.click();
+        MyFunc.Wait(2);
+
+        WebElement sepetaç = driver.findElement(By.xpath("//span[@class='cart-label']"));
+        sepetaç.click();
+        MyFunc.Wait(2);
+
+        WebElement sepetkontrol = driver.findElement(By.cssSelector("td[class='product-picture'] img"));
+        Assert.assertTrue("sepet doğrulandı", sepetkontrol.isDisplayed());
+        MyFunc.Wait(2);
+
+        WebElement apply = driver.findElement(By.xpath("//input[@name='discountcouponcode']"));
+        apply.sendKeys("12345");
+        MyFunc.Wait(2);
+
+        WebElement applybutton = driver.findElement(By.xpath("//input[@name='applydiscountcouponcode']"));
+        applybutton.click();
+
+        WebElement applydoğrulama = driver.findElement(By.cssSelector("div[class='message']"));
+        Assert.assertTrue("kupon eklendi", applydoğrulama.isDisplayed());
+
+        WebElement addgiftCard = driver.findElement(By.xpath("//input[@name='giftcardcouponcode']"));
+        addgiftCard.sendKeys("12345");
+
+        WebElement addgiftCardbutton = driver.findElement(By.xpath("//input[@name='applygiftcardcouponcode']"));
+        addgiftCardbutton.click();
+        MyFunc.Wait(2);
+
+        WebElement addgiftCardDoğrulama = driver.findElement(By.cssSelector("div[class='message']"));
+        Assert.assertTrue("hediye kartı eklendi", addgiftCardDoğrulama.isDisplayed());
+        MyFunc.Wait(2);
+
+        WebElement hizmetşartları = driver.findElement(By.xpath("//input[@id='termsofservice']"));
+        hizmetşartları.click();
+        MyFunc.Wait(2);
+
+        WebElement Checkout = driver.findElement(By.xpath("//button[@id='checkout']"));
+        Checkout.click();
+        MyFunc.Wait(2);
+
+        WebElement gecis = driver.findElement(By.xpath("//input[@class='button-1 new-address-next-step-button'][@onclick='Billing.save()']"));
+        gecis.click();
+        MyFunc.Wait(2);
+
+        MyFunc.Wait(5);
+
+        WebElement işaret = driver.findElement(By.xpath("//input[@name='PickUpInStore']"));
+        işaret.click();
+        MyFunc.Wait(2);
+
+        WebElement contine2 = driver.findElement(By.cssSelector("div[id='shipping-buttons-container'] input"));
+        contine2.click();
+        MyFunc.Wait(4);
+
+        WebElement kartsecim = driver.findElement(By.xpath("//input[@id='paymentmethod_0']"));
+        kartsecim.click();
+        MyFunc.Wait(2);
+
+        WebElement contine3 = driver.findElement(By.cssSelector("input[class='button-1 payment-method-next-step-button']"));
+        contine3.click();
+        MyFunc.Wait(2);
+
+        WebElement contine4 = driver.findElement(By.cssSelector("input[class='button-1 payment-info-next-step-button']"));
+        contine4.click();
+        MyFunc.Wait(2);
+
+        WebElement contine5 = driver.findElement(By.cssSelector("input[class='button-1 confirm-order-next-step-button']"));
+        contine5.click();
+        MyFunc.Wait(2);
+
+        WebElement yazı = driver.findElement(By.cssSelector("div[class='title'] strong"));
+        Assert.assertTrue("yazı gözüktü", yazı.isDisplayed());
+
+        BekleVeKapat();
+    }
+}
+
 }
