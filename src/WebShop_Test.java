@@ -3,6 +3,7 @@ import Utility.Func;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -33,7 +34,7 @@ public class WebShop_Test extends BaseDriver {
         Func.Wait(1);
 
         WebElement eMail = driver.findElement(By.xpath("//input[@id='Email']"));
-        eMail.sendKeys("tester.selenıum10@gmail.com");
+        eMail.sendKeys("tester.selenıum12@gmail.com");
         Func.Wait(1);
 
         WebElement password = driver.findElement(By.xpath("//input[@id='Password']"));
@@ -60,7 +61,7 @@ public class WebShop_Test extends BaseDriver {
 
     @Test
     public void Test2() {
-        driver=new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
 
         WebElement Register = driver.findElement(By.xpath("//a[@class='ico-register']"));
@@ -102,9 +103,10 @@ public class WebShop_Test extends BaseDriver {
         WaitAndClose();
 
     }
+
     @Test
     public void Test3() {
-        driver=new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
         // Login Kontrol
         WebElement loginBtn = driver.findElement(By.xpath("//a[text()='Log in']"));
@@ -120,7 +122,7 @@ public class WebShop_Test extends BaseDriver {
         Assert.assertEquals("hignevagna@gufum.com", loginControl.getText());
 
         //Logout Kontrol
-        WebElement logoutBtn= driver.findElement(By.xpath("//a[text()='Log out']"));
+        WebElement logoutBtn = driver.findElement(By.xpath("//a[text()='Log out']"));
         logoutBtn.click();
         WebElement loginBtn2 = driver.findElement(By.xpath("//a[text()='Log in']"));
         loginBtn2.click();
@@ -130,7 +132,7 @@ public class WebShop_Test extends BaseDriver {
 
     @Test
     public void Test4() {
-        driver=new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
 
         //Faild Login kontrol
@@ -167,33 +169,33 @@ public class WebShop_Test extends BaseDriver {
         WaitAndClose();
 
     }
+
     @Test
-    public void Test5()
-    {
-        driver=new ChromeDriver();
+    public void Test5() {
+        driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
 
 
-        WebElement btnLogin=driver.findElement(By.cssSelector("[class='ico-login']"));
+        WebElement btnLogin = driver.findElement(By.cssSelector("[class='ico-login']"));
         btnLogin.click();
 
 
-        WebElement email=driver.findElement(By.id("Email"));
-        email.sendKeys("tester.selenıum10@gmail.com");
+        WebElement email = driver.findElement(By.id("Email"));
+        email.sendKeys("tester.selenıum12@gmail.com");
 
 
-        WebElement password=driver.findElement(By.id("Password"));
+        WebElement password = driver.findElement(By.id("Password"));
         password.sendKeys("testers12332");
 
 
-        WebElement btnLogin2=driver.findElement(By.cssSelector("[class='button-1 login-button']"));
+        WebElement btnLogin2 = driver.findElement(By.cssSelector("[class='button-1 login-button']"));
         btnLogin2.click();
 
         Func.Wait(1);
-        WebElement electronics=driver.findElement(By.xpath("(//*[@href='/electronics'])[1]"));
-        WebElement cellPhones=driver.findElement(By.xpath("(//*[@href='/cell-phones'])[1]"));
+        WebElement electronics = driver.findElement(By.xpath("(//*[@href='/electronics'])[1]"));
+        WebElement cellPhones = driver.findElement(By.xpath("(//*[@href='/cell-phones'])[1]"));
 
-        Actions aksiyonDriver=new Actions(driver);
+        Actions aksiyonDriver = new Actions(driver);
 
         Func.Wait(1);
         aksiyonDriver.moveToElement(electronics).build().perform();
@@ -203,122 +205,124 @@ public class WebShop_Test extends BaseDriver {
         cellPhones.click();
         Func.Wait(1);
 
-        WebElement AddToChart=driver.findElement(By.xpath("(//input[@value='Add to cart'])[1]"));
+        WebElement AddToChart = driver.findElement(By.xpath("(//input[@value='Add to cart'])[1]"));
         AddToChart.click();
 
         Func.Wait(1);
-        WebElement sepetim=driver.findElement(By.xpath("(//*[@class='cart-label'])[1]"));
+        WebElement sepetim = driver.findElement(By.xpath("(//*[@class='cart-label'])[1]"));
         sepetim.click();
 
         Func.Wait(2);
-        WebElement product=driver.findElement(By.xpath("//a[@class='product-name']"));
-        Assert.assertTrue("Smartphone yazısı sepetimde bulunamadı!", product.getText().contains("Smartphone") );
+        WebElement product = driver.findElement(By.xpath("//a[@class='product-name']"));
+        Assert.assertTrue("Smartphone yazısı sepetimde bulunamadı!", product.getText().contains("Smartphone"));
 
         Func.Wait(1);
-        WebElement btnAgree=driver.findElement(By.id("termsofservice"));
+        WebElement btnAgree = driver.findElement(By.id("termsofservice"));
         btnAgree.click();
 
         Func.Wait(1);
-        WebElement checkout=driver.findElement(By.id("checkout"));
+        WebElement checkout = driver.findElement(By.id("checkout"));
         checkout.click();
 
         Func.Wait(2);
-        WebElement webMenu=driver.findElement(By.id("BillingNewAddress_CountryId"));
-        Select country=new Select(webMenu);
+        WebElement webMenu = driver.findElement(By.id("BillingNewAddress_CountryId"));
+        Select country = new Select(webMenu);
         country.selectByVisibleText("United States");
 
         Func.Wait(2);
-        WebElement webMenu2=driver.findElement(By.id("BillingNewAddress_StateProvinceId"));
-        Select state=new Select(webMenu2);
+        WebElement webMenu2 = driver.findElement(By.id("BillingNewAddress_StateProvinceId"));
+        Select state = new Select(webMenu2);
         state.selectByVisibleText("Alabama");
 
         Func.Wait(2);
-        WebElement city=driver.findElement(By.id("BillingNewAddress_City"));
+        WebElement city = driver.findElement(By.id("BillingNewAddress_City"));
         city.sendKeys("Missouri");
 
         Func.Wait(1);
-        WebElement adress1=driver.findElement(By.id("BillingNewAddress_Address1"));
+        WebElement adress1 = driver.findElement(By.id("BillingNewAddress_Address1"));
         adress1.sendKeys("Tecno");
 
         Func.Wait(1);
-        WebElement zipcode=driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
+        WebElement zipcode = driver.findElement(By.id("BillingNewAddress_ZipPostalCode"));
         zipcode.sendKeys("4444444");
 
         Func.Wait(1);
-        WebElement phoneNumber=driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
+        WebElement phoneNumber = driver.findElement(By.id("BillingNewAddress_PhoneNumber"));
         phoneNumber.sendKeys("+1 99988877766");
 
         Func.Wait(1);
-        WebElement btnContinue=driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[1]"));
+        WebElement btnContinue = driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[1]"));
         btnContinue.click();
 
         Func.Wait(2);
-        WebElement InStorePickup=driver.findElement(By.id("PickUpInStore"));
+        WebElement InStorePickup = driver.findElement(By.id("PickUpInStore"));
         InStorePickup.click();
 
         Func.Wait(1);
-        WebElement shippingAddress=driver.findElement(By.xpath("//label[text()='Select a shipping address from your address book or enter a new address.']"));
+        WebElement shippingAddress = driver.findElement(By.xpath("//label[text()='Select a shipping address from your address book or enter a new address.']"));
         Assert.assertTrue("Kargolama adresi kaybolmadı!", shippingAddress.isEnabled());
 
 
         Func.Wait(1);
-        WebElement btnContinue2=driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[2]"));
+        WebElement btnContinue2 = driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[2]"));
         btnContinue2.click();
 
         Func.Wait(1);
-        WebElement paymentMethod=driver.findElement(By.id("paymentmethod_0"));
+        WebElement paymentMethod = driver.findElement(By.id("paymentmethod_0"));
         paymentMethod.click();
 
 
         Func.Wait(1);
-        WebElement btnContinue3=driver.findElement(By.xpath("//input[@class='button-1 payment-method-next-step-button']"));
+        WebElement btnContinue3 = driver.findElement(By.xpath("//input[@class='button-1 payment-method-next-step-button']"));
         btnContinue3.click();
 
         Func.Wait(1);
-        WebElement odemeYontemi=driver.findElement(By.xpath("//p[text()='You will pay by COD']"));
-        Assert.assertTrue(" ödeme yöntemi doğrulanmadı!",odemeYontemi.getText().equals("You will pay by COD") );
+        WebElement odemeYontemi = driver.findElement(By.xpath("//p[text()='You will pay by COD']"));
+        Assert.assertTrue(" ödeme yöntemi doğrulanmadı!", odemeYontemi.getText().equals("You will pay by COD"));
 
         Func.Wait(1);
-        WebElement btnContinue4=driver.findElement(By.xpath("//input[@class='button-1 payment-info-next-step-button']"));
+        WebElement btnContinue4 = driver.findElement(By.xpath("//input[@class='button-1 payment-info-next-step-button']"));
         btnContinue4.click();
 
         Func.Wait(1);
-        List<WebElement> ucretler=driver.findElements(By.xpath("//span[@class='product-subtotal']"));
+        List<WebElement> ucretler = driver.findElements(By.xpath("//span[@class='product-subtotal']"));
         Func.Wait(1);
-        double toplam=0;
-        for (WebElement e:ucretler){
+        double toplam = 0;
+        for (WebElement e : ucretler) {
             System.out.println(e.getText());
-            toplam=toplam+Double.parseDouble(e.getText().replaceAll("[^0-9,.]",""));
+            toplam = toplam + Double.parseDouble(e.getText().replaceAll("[^0-9,.]", ""));
         }
         System.out.println("toplam = " + toplam);
 
         Func.Wait(1);
-        WebElement subtotalElement=driver.findElement(By.xpath("//span[@class='product-price']"));
-        Double subtotal= Double.parseDouble( subtotalElement.getText().replaceAll("[^0-9,.]","")   );
+        WebElement subtotalElement = driver.findElement(By.xpath("//span[@class='product-price']"));
+        Double subtotal = Double.parseDouble(subtotalElement.getText().replaceAll("[^0-9,.]", ""));
 
         Func.Wait(1);
-        WebElement additionalFee=driver.findElement(By.xpath("(//span[@class='product-price'])[3]"));
-        Double fee= Double.parseDouble( additionalFee.getText().replaceAll("[^0-9,.]","")   );
+        WebElement additionalFee = driver.findElement(By.xpath("(//span[@class='product-price'])[3]"));
+        Double fee = Double.parseDouble(additionalFee.getText().replaceAll("[^0-9,.]", ""));
         System.out.println("Payment method additional fee = " + fee);
 
-        double total=subtotal+fee;
+        double total = subtotal + fee;
         System.out.println("total = " + total);
         Func.Wait(1);
-        Assert.assertTrue("Değerler eşit değil", toplam+fee== total);
+        Assert.assertTrue("Değerler eşit değil", toplam + fee == total);
 
         Func.Wait(2);
-        WebElement btnConfirm=driver.findElement(By.xpath("//*[@class='button-1 confirm-order-next-step-button']"));
+        WebElement btnConfirm = driver.findElement(By.xpath("//*[@class='button-1 confirm-order-next-step-button']"));
         btnConfirm.click();
 
         Func.Wait(2);
-        WebElement orderComplated=driver.findElement(By.xpath("//*[@class='title']"));
-        Assert.assertTrue(" Sipariş tamamlanamadı !",orderComplated.getText().equals("Your order has been successfully processed!") );
+        WebElement orderComplated = driver.findElement(By.xpath("//*[@class='title']"));
+        Assert.assertTrue(" Sipariş tamamlanamadı !", orderComplated.getText().equals("Your order has been successfully processed!"));
 
 
         WaitAndClose();
     }
+
     @Test
-    public void test6() {
+    public void Test6() {
+        driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
 
         WebElement community = driver.findElement(By.xpath("//input[@id='pollanswers-1']"));
@@ -332,42 +336,38 @@ public class WebShop_Test extends BaseDriver {
         Assert.assertTrue("mesaj bulundu", msj.isDisplayed());
 
 
-        List<WebElement> sonuçlar = driver.findElements(By.xpath("//li[@class='answer']"));
-
-        System.out.println("sonuçlar. = " + sonuçlar.get(0));
-
-        WebElement giriş = driver.findElement(By.xpath("//a[@class='ico-login']"));
-        giriş.click();
+        WebElement giris = driver.findElement(By.xpath("//a[@class='ico-login']"));
+        giris.click();
 
         WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
-        email.sendKeys("Fatih453377@gmail.com");
+        email.sendKeys("tester.selenıum12@gmail.com");
 
         WebElement sifre = driver.findElement(By.xpath("//input[@id='Password']"));
-        sifre.sendKeys("Fatih188");
+        sifre.sendKeys("testers12332");
 
 
         WebElement but = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
         but.click();
 
 
-        BekleVeKapat();
+        WaitAndClose();
     }
 
     @Test
-    public void test7() {
+    public void Test7() {
         WebDriver driver = new ChromeDriver();
 
         driver.get("https://demowebshop.tricentis.com/");
 
 
-        WebElement giriş = driver.findElement(By.xpath("//a[@class='ico-login']"));
-        giriş.click();
+        WebElement giris = driver.findElement(By.xpath("//a[@class='ico-login']"));
+        giris.click();
 
         WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
-        email.sendKeys("Fatih453377@gmail.com");
+        email.sendKeys("tester.selenıum12@gmail.com");
 
         WebElement sifre = driver.findElement(By.xpath("//input[@id='Password']"));
-        sifre.sendKeys("Fatih188");
+        sifre.sendKeys("testers12332");
 
 
         WebElement but = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
@@ -376,31 +376,31 @@ public class WebShop_Test extends BaseDriver {
 
         WebElement computers = driver.findElement(By.linkText("Computers"));
         computers.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
-        WebElement masaüstü = driver.findElement(By.xpath("//a[@title='Show products in category Desktops']"));
-        masaüstü.click();
-        MyFunc.Wait(2);
+        WebElement masaustu = driver.findElement(By.xpath("//a[@title='Show products in category Desktops']"));
+        masaustu.click();
+        Func.Wait(2);
 
         WebElement addtoCart = driver.findElement(By.xpath("//input[@value='Add to cart']"));
         addtoCart.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement sepet = driver.findElement(By.xpath("//input[@id='add-to-cart-button-72']"));
         sepet.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
-        WebElement sepetaç = driver.findElement(By.xpath("//span[@class='cart-label']"));
-        sepetaç.click();
-        MyFunc.Wait(2);
+        WebElement sepetac = driver.findElement(By.xpath("//span[@class='cart-label']"));
+        sepetac.click();
+        Func.Wait(2);
 
         WebElement sepetkontrol = driver.findElement(By.cssSelector("td[class='product-picture'] img"));
         Assert.assertTrue("sepet doğrulandı", sepetkontrol.isDisplayed());
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement apply = driver.findElement(By.xpath("//input[@name='discountcouponcode']"));
         apply.sendKeys("12345");
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement applybutton = driver.findElement(By.xpath("//input[@name='applydiscountcouponcode']"));
         applybutton.click();
@@ -413,55 +413,57 @@ public class WebShop_Test extends BaseDriver {
 
         WebElement addgiftCardbutton = driver.findElement(By.xpath("//input[@name='applygiftcardcouponcode']"));
         addgiftCardbutton.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement addgiftCardDoğrulama = driver.findElement(By.cssSelector("div[class='message']"));
         Assert.assertTrue("hediye kartı eklendi", addgiftCardDoğrulama.isDisplayed());
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
-        WebElement hizmetşartları = driver.findElement(By.xpath("//input[@id='termsofservice']"));
-        hizmetşartları.click();
-        MyFunc.Wait(2);
+        WebElement hizmetsartlari = driver.findElement(By.xpath("//input[@id='termsofservice']"));
+        hizmetsartlari.click();
+        Func.Wait(2);
 
         WebElement Checkout = driver.findElement(By.xpath("//button[@id='checkout']"));
         Checkout.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement gecis = driver.findElement(By.xpath("//input[@class='button-1 new-address-next-step-button'][@onclick='Billing.save()']"));
         gecis.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
-        MyFunc.Wait(5);
+        Func.Wait(2);
 
-        WebElement işaret = driver.findElement(By.xpath("//input[@name='PickUpInStore']"));
-        işaret.click();
-        MyFunc.Wait(2);
+        WebElement isaret = driver.findElement(By.xpath("//input[@name='PickUpInStore']"));
+        isaret.click();
+        Func.Wait(2);
 
         WebElement contine2 = driver.findElement(By.cssSelector("div[id='shipping-buttons-container'] input"));
         contine2.click();
-        MyFunc.Wait(4);
+        Func.Wait(2);
 
         WebElement kartsecim = driver.findElement(By.xpath("//input[@id='paymentmethod_0']"));
         kartsecim.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement contine3 = driver.findElement(By.cssSelector("input[class='button-1 payment-method-next-step-button']"));
         contine3.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement contine4 = driver.findElement(By.cssSelector("input[class='button-1 payment-info-next-step-button']"));
         contine4.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
         WebElement contine5 = driver.findElement(By.cssSelector("input[class='button-1 confirm-order-next-step-button']"));
         contine5.click();
-        MyFunc.Wait(2);
+        Func.Wait(2);
 
-        WebElement yazı = driver.findElement(By.cssSelector("div[class='title'] strong"));
-        Assert.assertTrue("yazı gözüktü", yazı.isDisplayed());
+        WebElement yazi = driver.findElement(By.cssSelector("div[class='title'] strong"));
+        Assert.assertTrue("yazı gözüktü", yazi.isDisplayed());
 
-        BekleVeKapat();
+        WaitAndClose();
+
+
     }
 }
 
-}
+
