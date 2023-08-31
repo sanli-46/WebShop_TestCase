@@ -464,6 +464,58 @@ public class WebShop_Test extends BaseDriver {
 
 
     }
+    @Test
+    public void Test8() {
+        driver=new ChromeDriver();
+        // 1. Anasayfada giriş yapma
+        driver.get("https://demowebshop.tricentis.com/");
+        Func.Wait(2);
+        WebElement loginLink = driver.findElement(By.className("ico-login"));
+        loginLink.click();
+
+
+        WebElement emailInput = driver.findElement(By.id("Email"));
+        emailInput.sendKeys("soles26832@vikinoko.com");
+
+        WebElement passwordInput = driver.findElement(By.id("Password"));
+        passwordInput.sendKeys("Test123test");
+
+        WebElement loginButton = driver.findElement(By.cssSelector("input.button-1.login-button"));
+        loginButton.click();
+        Func.Wait(2);
+
+        // 2. Hesabım sayfasına erişme
+        WebElement myAccountLink = driver.findElement(By.linkText("soles26832@vikinoko.com"));
+        Assert.assertTrue(myAccountLink.isDisplayed());
+        myAccountLink.click();
+        Func.Wait(2);
+
+        // 3. Siparişler bağlantısına tıklama
+        WebElement ordersLink = driver.findElement(By.linkText("Orders"));
+        Assert.assertTrue(ordersLink.isDisplayed());
+        ordersLink.click();
+        Func.Wait(2);
+
+        // 4. Sipariş geçmişi görüntüleme
+        try {
+            WebElement latestOrder = driver.findElement(By.cssSelector("input[value='Details']"));
+            latestOrder.click();
+            Func.Wait(2);
+            WebElement productName = driver.findElement(By.xpath("//a[@href='/141-inch-laptop']"));
+            System.out.println("Last Order: " + productName.getText());
+
+        } catch (Exception e) {
+            System.out.println("Last order not found!");
+        }
+
+        // Fatura linkine tıklayarak faturayı indirme:
+        WebElement PDFInvoice = driver.findElement(By.cssSelector(".button-2.pdf-order-button"));
+        PDFInvoice.click();
+        Func.Wait(2);
+        System.out.println("Your order invoice has been downloaded to your computer!");
+
+        WaitAndClose();
+    }
 }
 
 
